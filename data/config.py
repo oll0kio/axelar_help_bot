@@ -8,8 +8,8 @@ load_dotenv()
 BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
 # Заберем данные для подключения к базе данных (юзер, пароль, название бд) - тоже прописать в файле ".env"
-PGUSER = str(os.getenv("PGUSER"))
-PGPASSWORD = str(os.getenv("PGPASSWORD"))
+PGUSER = str(os.getenv("PG_USER"))
+PGPASSWORD = str(os.getenv("PG_PASSWORD"))
 DATABASE = str(os.getenv("DATABASE"))
 
 admins = [
