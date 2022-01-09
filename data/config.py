@@ -20,11 +20,3 @@ ip = os.getenv("ip")
 
 # Ссылка подключения к базе данных
 POSTGRES_URI = f"postgresql+asyncpg://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
-aiogram_redis = {
-    'host': ip,
-}
-
-redis = {
-    'address': (ip, 6379),
-    'encoding': 'utf8'
-}
