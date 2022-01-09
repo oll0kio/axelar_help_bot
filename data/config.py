@@ -1,22 +1,13 @@
 import os
 
-from dotenv import load_dotenv
+TOKEN = os.getenv("TOKEN")
+admin_id = int(os.getenv("ADMIN_ID"))
 
-load_dotenv()
+# DB settings
+DB_USER = os.getenv("DB_USER")
+DB_PASS = os.getenv("DB_PASS")
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
 
-# Заберем токен нашего бота (прописать в файле ".env")
-BOT_TOKEN = str(os.getenv("BOT_TOKEN"))
 
-# Заберем данные для подключения к базе данных (юзер, пароль, название бд) - тоже прописать в файле ".env"
-PGUSER = str(os.getenv("PG_USER"))
-PGPASSWORD = str(os.getenv("PG_PASSWORD"))
-DATABASE = str(os.getenv("DATABASE"))
-
-admins = [
-    os.getenv("ADMIN_ID"),
-]
-
-ip = os.getenv("ip")
-
-# Ссылка подключения к базе данных
-POSTGRES_URI = f"postgresql+asyncpg://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
+lp_token = os.getenv("LIQPAY_TOKEN")

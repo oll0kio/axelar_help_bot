@@ -1,28 +1,20 @@
 version: '3.1'
 
 services:
-
   db:
     container_name: database
     image: sameersbn/postgresql:10-2
     environment:
-      DB_NAME: gino
-      PG_PASSWORD: example
+      DB_NAME: $DB_NAME
+      PG_PASSWORD: $DB_PASS
     restart: always
     ports:
       - 5432:5432
     networks:
       - botnet
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-
-  adminer:
-    container_name: adminer
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-#    network_mode: "host"
+# Uncomment volumes if you need locate db on local host
+#    volumes:
+#      - ./pgdata:/var/lib/postgresql/data
 
   tgbot:
     container_name: bot
