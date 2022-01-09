@@ -95,7 +95,6 @@ async def add_services():
                       link="https://cheapsms.ru/#",
                       short_description="мне понравился",
                       description="Норм")
-def add_database():
-    loop = asyncio.new_event_loop()
-    loop.run_until_complete(create_db())
-    loop.run_until_complete(add_services())
+
+
+
