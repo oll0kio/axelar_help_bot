@@ -1,7 +1,11 @@
 import os
 
-TOKEN = os.getenv("TOKEN")
-admin_id = int(os.getenv("ADMIN_ID"))
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TOKEN = str(os.getenv("TOKEN"))
+admin_id = str(os.getenv("ADMIN_ID"))
 
 # DB settings
 DB_USER = os.getenv("DB_USER")
