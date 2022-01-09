@@ -1,6 +1,4 @@
-import asyncio
 
-from utils.db_api.database import create_db
 from utils.db_api.db_commands import add_service
 
 
