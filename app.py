@@ -13,6 +13,7 @@ async def on_startup(dp):
 
     from utils.notify_admins import on_startup_notify
     await on_startup_notify(dp)
+    await asyncio.sleep(10)
     await create_db()
     await add_services()
 

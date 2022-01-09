@@ -19,7 +19,7 @@ admins = [
 ip = os.getenv("ip")
 
 # Ссылка подключения к базе данных
-POSTGRES_URI = f"postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
+POSTGRES_URI = f"postgresql+asyncpg://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
 aiogram_redis = {
     'host': ip,
 }

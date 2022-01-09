@@ -4,13 +4,17 @@ services:
 
   db:
     container_name: database
-    image: postgres
+    image: sameersbn/postgresql:10-2
+    environment:
+      DB_NAME: gino
+      PG_PASSWORD: example
     restart: always
     ports:
       - 5432:5432
-    env_file:
-      - ".env"
-#    network_mode: "host"
+    networks:
+      - botnet
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
 
   adminer:
     container_name: adminer
@@ -22,12 +26,20 @@ services:
 
   tgbot:
     container_name: bot
-    build: .
-    volumes:
-      - .:/src
+    build:
+      context: .
     command: python app.py
+    networks:
+      - botnet
     restart: always
-    network_mode: "host"
-
     env_file:
       - ".env"
+    # bot start after load db
+    depends_on:
+      - db
+
+# указываются используемые сети
+networks:
+  botnet:
+    # указывается драйвер сети
+    driver: bridge
