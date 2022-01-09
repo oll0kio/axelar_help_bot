@@ -11,10 +11,11 @@ async def on_startup(dp):
     filters.setup(dp)
     middlewares.setup(dp)
 
-    from utils.notify_admins import on_startup_notify
-    await on_startup_notify(dp)
-    await asyncio.sleep(10)
+    #from utils.notify_admins import on_startup_notify
+    #await on_startup_notify(dp)
+    await asyncio.sleep(30)
     await create_db()
+    await asyncio.sleep(30)
     await add_services()
 
 
