@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.callback_data import CallbackData
 
-menu_cd = CallbackData("show_menu", "level", "info", "lang")
+menu_cd = CallbackData("show_menu", "level", "lang")
 
 
 def make_callback_data(level, lang="en"):
