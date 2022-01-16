@@ -1,7 +1,4 @@
-from typing import Union
-
 from aiogram import types
-from aiogram.dispatcher.filters import Command
 
 from keyboards.inline.menu_keyboards import menu_keyboard, menu_cd, info_keyboard
 from loader import dp
@@ -25,7 +22,6 @@ async def show_info(callback: types.CallbackQuery, lang):
 @dp.callback_query_handler(menu_cd.filter())
 async def navigate(call: types.CallbackQuery, callback_data: dict):
     current_level = callback_data.get('level')
-    info = callback_data.get('info')
     lang = callback_data.get('lang')
 
     levels = {
@@ -37,6 +33,5 @@ async def navigate(call: types.CallbackQuery, callback_data: dict):
 
     await current_level_function(
         call,
-        info=info,
         lang=lang
     )
