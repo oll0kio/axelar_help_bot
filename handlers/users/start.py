@@ -22,6 +22,6 @@ async def bot_start(message: types.Message):
         user=message.from_user.full_name, count_users=await count_users()
     )
     markup = InlineKeyboardMarkup(row_width=2)
-    markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(lang="ru")),
-               InlineKeyboardMarkup(text="English", callback_data=make_callback_data(lang="en")))
+    markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(level=0,lang="ru")),
+               InlineKeyboardMarkup(text="English", callback_data=make_callback_data(level=0,lang="en")))
     await message.answer(text, reply_markup=markup)
