@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+from keyboards.inline.menu_keyboards import make_callback_data
 from loader import dp
 from utils.db_api.db_commands import add_new_user, count_users
 
@@ -20,15 +21,7 @@ async def bot_start(message: types.Message):
             ).format(
         user=message.from_user.full_name, count_users=await count_users()
     )
-    languages_markup = InlineKeyboardMarkup(
-        inline_keyboard=
-        [
-            [
-                InlineKeyboardButton(text="Русский", callback_data="ru")
-            ],
-            {
-                InlineKeyboardButton(text="English", callback_data="en"),
-            }
-        ]
-    )
-    await message.answer(text, reply_markup=languages_markup)
+    markup = InlineKeyboardMarkup(row_width=2)
+    markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(lang="ru")),
+               InlineKeyboardMarkup(text="English", callback_data=make_callback_data(lang="en")))
+    await message.answer(text, reply_markup=markup)
