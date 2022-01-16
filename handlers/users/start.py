@@ -19,7 +19,7 @@ async def bot_start(message: types.Message):
             "Please choose a language so I can continue the dialogue with you:\n"
             "Пожалуйста, выбери язык, чтобы мы могли продолжать с тобой диалог:\n"
             ).format(
-        user=message.from_user.full_name, count_users=await count_users()
+        user=message.from_user.full_name, count_users=10 + await count_users()
     )
     markup = InlineKeyboardMarkup(row_width=2)
     markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(level=0,lang="ru")),
