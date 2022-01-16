@@ -1,69 +1,41 @@
 from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.callback_data import CallbackData
 
-from utils.db_api.db_commands import get_categories, count_services, get_services
-
-menu_cd = CallbackData("show_menu", "level", "category", "service_id")
+menu_cd = CallbackData("show_menu", "level", "info", "lang")
 
 
-def make_callback_data(level, category="0", service_id="0"):
-    return menu_cd.new(level=level, category=category, service_id=service_id)
+def make_callback_data(level, info=0, lang="ru"):
+    return menu_cd.new(level=level, info=info, lang=lang)
 
 
-async def menu_keyboard():
+async def menu_keyboard(lang):
     CURRENT_LEVEL = 0
-    markup = InlineKeyboardMarkup(row_width=4)
+    markup = InlineKeyboardMarkup(row_width=1)
+    if lang == "ru":
+        markup.add(InlineKeyboardMarkup(text="Сайт Axelar", url="https://axelar.network/"),
+                   InlineKeyboardMarkup(text="Твитер Axelar", url="https://twitter.com/axelarcore"),
+                   InlineKeyboardMarkup(text="Дискорд Axelar", url="https://discord.com/invite/aRZ3Ra6f7D"))
+        markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(lang="ru")),
+                   InlineKeyboardMarkup(text="English", callback_data=make_callback_data(lang="en")))
 
-    categories = await get_categories()
-
-    for category in categories:
-        number_of_services = await count_services(category.category_code)
-        button_text = f"{category.category_name} ({number_of_services} шт.)"
-        callback_data = make_callback_data(level=CURRENT_LEVEL + 1,
-                                           category=category.category_code)
-        markup.add(InlineKeyboardMarkup(text=button_text, callback_data=callback_data))
-        services = await get_services(category.category_code)
-        first = 1
-        for service in services:
-            if first == 1:
-                markup.add(InlineKeyboardMarkup(text=service.name, url=service.link))
-                first = 0
-            else:
-                markup.insert(InlineKeyboardMarkup(text=service.name, url=service.link))
-    markup.row(InlineKeyboardMarkup(text="Профиль", callback_data=callback_data),
-               InlineKeyboardMarkup(text="Помощь", callback_data=callback_data),
-               InlineKeyboardMarkup(text="Поиск", callback_data=callback_data))
+    else:
+        markup.add(InlineKeyboardMarkup(text="Axelar site", url="https://axelar.network/"),
+                   InlineKeyboardMarkup(text="Axelar twitter", url="https://twitter.com/axelarcore"),
+                   InlineKeyboardMarkup(text="Axelar discord", url="https://discord.com/invite/aRZ3Ra6f7D"))
+        markup.row(InlineKeyboardMarkup(text="Русский", callback_data=make_callback_data(lang="ru")),
+                   InlineKeyboardMarkup(text="English", callback_data=make_callback_data(lang="en")))
     return markup
 
 
-async def services_keyboard(category):
+def info_keyboard(lang):
     CURRENT_LEVEL = 1
-    markup = InlineKeyboardMarkup(row_width=2)
-
-    services = await get_services(category)
-
-    for service in services:
-        button_text = f"{service.name} - {service.short_description}"
-        markup.insert(InlineKeyboardMarkup(text=button_text, url=service.link))
-        callback_data = make_callback_data(level=CURRENT_LEVEL + 1,
-                                           category=category,
-                                           service_id=service.id)
-        markup.insert(InlineKeyboardMarkup(text="Подробнее", callback_data=callback_data))
-    markup.row(
-        InlineKeyboardMarkup(text="Назад", callback_data=make_callback_data(level=CURRENT_LEVEL - 1)),
-        InlineKeyboardMarkup(text="Поиск", callback_data=make_callback_data(level=CURRENT_LEVEL - 1))
-    )
-    return markup
-
-
-def service_keyboard(category, service):
-    CURRENT_LEVEL = 2
     markup = InlineKeyboardMarkup()
-    markup.row(
-        InlineKeyboardMarkup(text="Ссылка", url=service.link)
-    )
-    markup.row(
-        InlineKeyboardMarkup(text="Назад", callback_data=make_callback_data(level=CURRENT_LEVEL - 1, category=category)),
-        InlineKeyboardMarkup(text="Поиск", callback_data=make_callback_data(level=CURRENT_LEVEL - 1, category=category))
-    )
+    if lang == "ru":
+        markup.row(
+            InlineKeyboardMarkup(text="Назад", callback_data=make_callback_data(level=CURRENT_LEVEL - 1, lang=lang)),
+        )
+    else:
+        markup.row(
+            InlineKeyboardMarkup(text="Back", callback_data=make_callback_data(level=CURRENT_LEVEL - 1, lang=lang)),
+        )
     return markup

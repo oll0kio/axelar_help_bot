@@ -35,3 +35,5 @@ networks:
   botnet:
     # указывается драйвер сети
     driver: bridge
+
+#git clone https://github.com/EliseyBelov/axelar_help_bot
