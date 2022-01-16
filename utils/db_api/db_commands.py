@@ -26,6 +26,6 @@ async def add_new_user(referral=None):
     await new_user.create()
     return new_user
 
-async def count_users(self) -> int:
+async def count_users():
     total = await db.func.count(User.id).gino.scalar()
     return total
