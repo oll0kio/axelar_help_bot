@@ -4,7 +4,7 @@ from keyboards.inline.menu_keyboards import menu_keyboard, menu_cd, info_keyboar
 from loader import dp
 
 
-async def list_menu(callback: types.CallbackQuery, lang):
+async def list_menu(callback: types.CallbackQuery, lang, **kwargs):
     markup = await menu_keyboard(lang)
     if lang == "ru":
         text = "абоба"
