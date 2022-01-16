@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from loader import dp
-from utils.db_api.db_commands import get_user_by_id, add_new_user, count_users
+from utils.db_api.db_commands import add_new_user, count_users
 
 
 @dp.message_handler(CommandStart())

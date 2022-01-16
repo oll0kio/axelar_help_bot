@@ -1,8 +1,7 @@
 from aiogram import types
-from typing import List
 
 from utils.db_api.database import db
-from utils.db_api.models import Service, User
+from utils.db_api.models import User
 
 
 async def get_user(user_id):
