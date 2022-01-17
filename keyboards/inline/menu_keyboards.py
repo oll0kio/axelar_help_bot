@@ -12,8 +12,12 @@ async def menu_keyboard(lang):
     CURRENT_LEVEL = 0
     markup = InlineKeyboardMarkup(row_width=1)
     if lang == "ru":
-        markup.add(InlineKeyboardMarkup(text="Мотивация для создания Axelar", callback_data=make_callback_data(level=1, info="motivation",lang="ru")),
-                   InlineKeyboardMarkup(text="Какие проблемы решает Axelar?", callback_data=make_callback_data(level=1, info="trouble",lang="ru")))
+        markup.add(InlineKeyboardMarkup(text="Мотивация для создания Axelar",
+                                        callback_data=make_callback_data(level=1, info="motivation",lang="ru")),
+                   InlineKeyboardMarkup(text="Какие проблемы решает Axelar?",
+                                        callback_data=make_callback_data(level=1, info="trouble",lang="ru")),
+                   InlineKeyboardMarkup(text="Варианты использования сети Axelar",
+                                        callback_data=make_callback_data(level=1, info="usage", lang="ru")))
         markup.row(InlineKeyboardMarkup(text="Сайт Axelar", url="https://axelar.network/"),
                    InlineKeyboardMarkup(text="Твитер Axelar", url="https://twitter.com/axelarcore"),
                    InlineKeyboardMarkup(text="Дискорд Axelar", url="https://discord.com/invite/aRZ3Ra6f7D"))
@@ -24,7 +28,9 @@ async def menu_keyboard(lang):
         markup.add(InlineKeyboardMarkup(text="Motivation for creating Axelar",
                                         callback_data=make_callback_data(level=1, info="motivation", lang="en")),
                    InlineKeyboardMarkup(text="What problems does Axelar solve?",
-                                        callback_data=make_callback_data(level=1, info="trouble", lang="en")))
+                                        callback_data=make_callback_data(level=1, info="trouble", lang="en")),
+                   InlineKeyboardMarkup(text="Use cases for the Axelar network",
+                                        callback_data=make_callback_data(level=1, info="usage", lang="en")))
         markup.row(InlineKeyboardMarkup(text="Axelar site", url="https://axelar.network/"),
                    InlineKeyboardMarkup(text="Axelar twitter", url="https://twitter.com/axelarcore"),
                    InlineKeyboardMarkup(text="Axelar discord", url="https://discord.com/invite/aRZ3Ra6f7D"))

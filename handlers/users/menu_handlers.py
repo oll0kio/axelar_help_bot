@@ -43,6 +43,18 @@ async def show_info(callback: types.CallbackQuery, info, lang):
                         'разные языки смарт-контрактов. Акселар создает единую децентрализованную сеть и стек '
                         'протоколов для подключения и объединения различных приложений и платформ во всех этих '
                         'экосистемах.')
+            case "usage":
+                text = ('<b>Варианты использования сети Axelar</b>\n'
+                        'Некоторые первоначальные варианты использования связаны с передачей активов. Если вы '
+                        'владеете активом в одной из существующих цепочек блоков, таких как Bitcoin или Ethereum, '
+                        'и хотите использовать этот актив в приложении, построенном на одной из других блокчейнов, '
+                        'то столкнетесь с сложностями. Часто приходится полагаться на централизованное решение. Но '
+                        'Акселар создает сеть и приложения на ее основе, они позволят пользователям перемещать свои '
+                        'активы в другой блокчейн. В дальнейшем используя их непосредственно в своих приложениях.\nВ '
+                        'более общем плане Axelar Network позволить приложениям объединяться в произвольные цепочки. '
+                        'Например, если вы хотите получить информацию о процентной ставке с одной платформы, '
+                        'вы сможете выполнить общий запрос через SSL сеть и получить процентную ставку с другой '
+                        'платформы для вашего приложения.')
 
     else:
         match info:
@@ -65,6 +77,17 @@ async def show_info(callback: types.CallbackQuery, info, lang):
                         'rules, and support different smart contract languages. Axelar creates a single decentralized '
                         'network and protocol stack to connect and connect different applications and platforms '
                         'across all these ecosystems.')
+            case "usage":
+                text = ('<b>Use cases for the Axelar network</b>\n'
+                        'Some initial use cases are related to the transfer of assets. If you own an asset on one of '
+                        'the existing blockchains, such as Bitcoin or Ethereum, and want to use that asset in an '
+                        'application built on one of the other blockchains, then you will run into difficulties. '
+                        'Often you have to rely on a centralized solution. But Akselar is building the network and '
+                        'applications based on it, they will allow users to move their assets to another blockchain. '
+                        'In the future, using them directly in their applications.\nMore generally, Axelar Network '
+                        'will allow applications to join in arbitrary chains. For example, if you want to get '
+                        'interest rate information from one platform, you can make a general query over the SSL '
+                        'network and get the interest rate from another platform for your application.')
 
     await callback.message.edit_text(text, reply_markup=markup)
 
